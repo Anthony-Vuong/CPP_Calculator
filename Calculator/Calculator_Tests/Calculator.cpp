@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Calculator.h"
-
+#include <sstream>
 
 
 Calculator::Calculator() {
@@ -10,21 +10,31 @@ Calculator::Calculator() {
 Calculator::~Calculator() {
 	//std::cout << "Destructor" << std::endl;
 }
- 
+
+/*
+int Calculator::get_int_num(int pos){
+    return operands.at(pos);    
+}
+
+double Calculator::get_double_num(int pos){
+    return double_operands.at(pos);
+}
+*/
 void Calculator::parse_expression(std::string exp){
 	std::string temp{};
+    
 	for (int i{ 0 }; i < exp.size(); i++) {
 		char c = exp.at(i);
-		if (c != ' ' && c >= 48 && c <= 57) {
+		if ((c != ' ' && c >= 48 && c <= 57) || (c != ' ' && c == '.')) {
 			temp += c;
 		}
-		if (c != ' ' && (c == 42 || c == 120 || c == 43 || c == 45 || c == 47)) {
-			operands.push_back(stoi(temp));
-			operators.push_back(c);
+		if (c != ' ' && (c == 42 || c == 120 || c == 43 || c == 45 || c == 47)) { 
+            operands.push_back(temp);
+            operators.push_back(c);
 			temp.clear();
 		}
 		if (i == exp.size()-1) {
-			operands.push_back(stoi(temp));
+            operands.push_back(temp);
 		}
 	}
 }

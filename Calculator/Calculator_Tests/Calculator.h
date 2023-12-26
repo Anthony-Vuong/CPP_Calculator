@@ -8,16 +8,16 @@ class Calculator
 private:
 	
 protected:
-	std::vector<int> operands;
+	std::vector<std::string> operands;
 	std::vector<char> operators;
 public:
 	Calculator();
 	~Calculator();
-	virtual int add(int op1, int op2) = 0;
-	virtual int subtract(int op1, int op2) = 0;
-	virtual int multiply(int op1, int op2) = 0;
-	virtual int divide(int op1, int op2) = 0;
-	virtual int remainder(int op1, int op2) = 0;
+	virtual int add(std::string op1, std::string op2) = 0;
+	virtual int subtract(std::string op1, std::string op2) = 0;
+	virtual int multiply(std::string op1, std::string op2) = 0;
+	virtual int divide(std::string op1, std::string op2) = 0;
+	virtual int remainder(std::string op1, std::string op2) = 0;
 	virtual void calculate() = 0;
 	void parse_expression(std::string exp);
 	void run_calculator();

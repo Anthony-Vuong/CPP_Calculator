@@ -1,19 +1,19 @@
-
+/*
 #include "pch.h"
 #include "C:\Users\antho\Learning_CPP\Calculator\Calculator\SimpleCalculator.cpp" 
 #include "../Calculator/SimpleCalculator.h"
 #include "../Calculator/SimpleCalculator.cpp"
 #include "../Calculator/Calculator.h"
 #include "../Calculator/Calculator.cpp"
+*/
 
 
-/*
 #include "gtest/gtest.h"
 #include "SimpleCalculator.h"
 #include "SimpleCalculator.cpp"
 #include "Calculator.h"
 #include "Calculator.cpp"
-*/
+
 
 
 /* Test fixture for simple calculator 
@@ -39,6 +39,37 @@ namespace my
                         
                     // Destructor - teardown happens here
                     ~Calculator_Arithmetic_Tests()
+                    {
+
+                    }
+                            
+                    // SetUp can be overriden - this method will be called after constructor, before each test
+                    void SetUp()
+                    {
+                        s = new SimpleCalculator();
+                    }
+                                
+                    // TearDown can be overriden - this method is called after destructor, after each test
+                    void TearDown()
+                    {
+                        delete s;        
+                    }  
+
+                public:
+                    SimpleCalculator *s;
+            };
+            
+            class Calculator_Parsing_Tests : public testing::Test
+            {
+                protected:
+
+                    // Constructor - setup happens in here
+                    Calculator_Parsing_Tests()
+                    {
+                    }
+                        
+                    // Destructor - teardown happens here
+                    ~Calculator_Parsing_Tests()
                     {
 
                     }
@@ -230,6 +261,34 @@ namespace my
 	            EXPECT_TRUE(true);
             }
             /* End of Simple Calculator Division Tests */
+            
+            TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
+            {
+	            s->parse_expression("123");
+	            EXPECT_EQ(s->get_int_num(0), 123);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Parsing_Tests, IntegerNum2) 
+            {
+	            s->parse_expression("123 + 456");
+	            EXPECT_EQ(s->get_int_num(0), 123);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Parsing_Tests, IntegerNum3) 
+            {
+	            s->parse_expression("123 + 456");
+	            EXPECT_EQ(s->get_int_num(1), 456);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Parsing_Tests, DoubleNum1) 
+            {
+	            s->parse_expression("123.456");
+	            EXPECT_EQ(s->get_double_num(0), 123.456);
+	            EXPECT_TRUE(true);
+            }
         }
     }
 }

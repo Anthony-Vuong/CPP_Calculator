@@ -4,20 +4,20 @@
 
 
 
-int SimpleCalculator::add(int op1, int op2) {
+int SimpleCalculator::add(std::string op1, std::string op2) {
 	return op1 + op2;
 }
-int SimpleCalculator::subtract(int op1, int op2) {
+int SimpleCalculator::subtract(std::string op1, std::string op2) {
 	return op2 - op1;
 }
-int SimpleCalculator::multiply(int op1, int op2) {
+int SimpleCalculator::multiply(std:string op1, std::string op2) {
 	return op1 * op2;
 }
-int SimpleCalculator::divide(int op1, int op2) {
+int SimpleCalculator::divide(std::string op1, std::string op2) {
 	return op1 / op2;
 }
 
-int SimpleCalculator::remainder(int op1, int op2) {
+int SimpleCalculator::remainder(std::string op1, std::string op2) {
 	return op1 % op2;
 }
 
