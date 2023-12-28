@@ -1,68 +1,76 @@
 #include <string>
 #include <iostream>
+#include <cmath>
 #include "SimpleCalculator.h"
 
 
 
-int SimpleCalculator::add(std::string op1, std::string op2) {
+auto SimpleCalculator::add(auto op1, auto op2) {
 	return op1 + op2;
 }
-int SimpleCalculator::subtract(std::string op1, std::string op2) {
+
+auto SimpleCalculator::subtract(auto op1, auto op2) {
 	return op2 - op1;
 }
-int SimpleCalculator::multiply(std:string op1, std::string op2) {
+
+int SimpleCalculator::multiply(auto op1, auto op2) {
 	return op1 * op2;
 }
-int SimpleCalculator::divide(std::string op1, std::string op2) {
+
+int SimpleCalculator::divide(auto op1, auto op2) {
 	return op1 / op2;
 }
 
-int SimpleCalculator::remainder(std::string op1, std::string op2) {
-	return op1 % op2;
+int SimpleCalculator::remainder(auto op1, auto op2) {
+	return std::fmod(op1, op2);
 }
 
 void SimpleCalculator::calculate() {
 
 	char temp_operator{};
-	int temp_oper1{};
-	int temp_oper2{};
-	int result, mod;
+    std::string t1{};
+    std::string t2{};
+    auto temp_oper1{0.0};
+    auto temp_oper2{0.0};
+	auto result{0.0}, mod{0.0};
+
+    t1 = operands.at(0);
+	t2 = operands.at(1);
+
+    if(t1.find('.')){
+        temp_oper1 = stod(t1);
+    }
+    else{
+        temp_oper1 = stoi(t1);
+    }
+    
+    if(t2.find('.')){
+        temp_oper2 = stod(t2);   
+    }
+    else{
+        temp_oper2 = stoi(t2);
+    }
 
 
 	for (int i{ 0 }; i < operators.size(); i++) {
 		temp_operator = operators.at(i);
 		switch (temp_operator) {
 		case '+':
-			temp_oper1 = operands.at(0);
-			temp_oper2 = operands.at(1);
 			result = add(temp_oper1, temp_oper2);
-			std::cout << "..........Answ: " << result << std::endl;
-			break;
+            std::cout << result << std::endl;
+            break;
 		case '-':
-			std::cout << "min" << std::endl;
-			temp_oper1 = operands.at(0);
-			temp_oper2 = operands.at(1);
 			result = subtract(temp_oper1, temp_oper2);
-			std::cout << "..........Answ: " << result << std::endl;
 			break;
 		case '/':
-			temp_oper1 = operands.at(0);
-			temp_oper2 = operands.at(1);
 			result = divide(temp_oper1, temp_oper2);
 			mod = remainder(temp_oper1, temp_oper2);
-			std::cout << "..........Answ: " << result << "r" << mod << std::endl;
 			break;
 		case '*':
-			temp_oper1 = operands.at(0);
-			temp_oper2 = operands.at(1);
 			result = multiply(temp_oper1, temp_oper2);
-			std::cout << "..........Answ: " << result << std::endl;
 			break;
 		case 'x':
-			temp_oper1 = operands.at(0);
-			temp_oper2 = operands.at(1);
 			result = multiply(temp_oper1, temp_oper2);
-			std::cout << "..........Answ: " << result << std::endl;
 			break;
 		default:
 			std::cout << "Unknown" << std::endl;

@@ -13,11 +13,11 @@ protected:
 public:
 	Calculator();
 	~Calculator();
-	virtual int add(std::string op1, std::string op2) = 0;
-	virtual int subtract(std::string op1, std::string op2) = 0;
-	virtual int multiply(std::string op1, std::string op2) = 0;
-	virtual int divide(std::string op1, std::string op2) = 0;
-	virtual int remainder(std::string op1, std::string op2) = 0;
+    int add(auto, auto);
+	int subtract(auto, auto);
+	int multiply(auto, auto);
+    int divide(auto, auto);
+	int remainder(auto, auto);
 	virtual void calculate() = 0;
 	void parse_expression(std::string exp);
 	void run_calculator();

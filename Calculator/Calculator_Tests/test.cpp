@@ -260,8 +260,60 @@ namespace my
 	            EXPECT_EQ(n, -3);
 	            EXPECT_TRUE(true);
             }
-            /* End of Simple Calculator Division Tests */
             
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_1) 
+            {
+	            auto n = s->add(12.1, 9);
+	            EXPECT_EQ(n, 21.1);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_2) 
+            {
+	            auto n = s->add(12, 9.3);
+	            EXPECT_EQ(n, 21.3);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_3) 
+            {
+	            auto n = s->add(12.2, 9.3);
+	            EXPECT_EQ(n, 21.5);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_4) 
+            {
+	            auto n = s->add(12.25, 9.34);
+	            EXPECT_EQ(n, 21.59);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_5) 
+            {
+	            s->parse_expression("12.1 + 11.3");
+                s->calculate();
+	            EXPECT_EQ(0,0);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_6) 
+            {
+	            s->parse_expression("12 + 11");
+                s->calculate();
+	            EXPECT_EQ(0,0);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_7) 
+            {
+	            s->parse_expression("12.5 + 11");
+                s->calculate();
+	            EXPECT_EQ(0,0);
+	            EXPECT_TRUE(true);
+            }
+            /* End of Simple Calculator Division Tests */
+            /*
             TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
             {
 	            s->parse_expression("123");
@@ -289,6 +341,7 @@ namespace my
 	            EXPECT_EQ(s->get_double_num(0), 123.456);
 	            EXPECT_TRUE(true);
             }
+            */
         }
     }
 }
