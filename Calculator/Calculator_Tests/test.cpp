@@ -260,6 +260,7 @@ namespace my
 	            EXPECT_EQ(n, -3);
 	            EXPECT_TRUE(true);
             }
+            /* End of Simple Calculator Division Tests */
             
             TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_1) 
             {
@@ -288,7 +289,78 @@ namespace my
 	            EXPECT_EQ(n, 21.59);
 	            EXPECT_TRUE(true);
             }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Add_Negative_Double_Num_1) 
+            {
+	            auto n = s->add(-12.25, 9.34);
+	            EXPECT_EQ(n, -2.91);
+	            EXPECT_TRUE(true);
+            }
+        
+            TEST_F(Calculator_Arithmetic_Tests, Add_Negative_Double_Num_2) 
+            {
+	            auto n = s->add(12.25, -9.34);
+	            EXPECT_EQ(n, 2.91);
+	            EXPECT_TRUE(true);
+            }
+          
+            TEST_F(Calculator_Arithmetic_Tests, Add_Negative_Double_Num_3) 
+            {
+	            auto n = s->add(-12.25, -9.34);
+	            EXPECT_EQ(n, -21.59);
+	            EXPECT_TRUE(true);
+            }
 
+            TEST_F(Calculator_Arithmetic_Tests, Add_Negative_Double_Num_4) 
+            {
+	            auto n = s->add(-12.25, 0);
+	            EXPECT_EQ(n, -12.25);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Add_Negative_Double_Num_5) 
+            {
+	            auto n = s->add(0, -9.34);
+	            EXPECT_EQ(n, -9.34);
+	            EXPECT_TRUE(true);
+            }
+         
+            TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_1) 
+            {
+	            auto n = s->subtract(0, -9.34);
+	            EXPECT_EQ(n, -9.34);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_2) 
+            {
+	            auto n = s->subtract(-9.34, 0);
+	            EXPECT_EQ(n, 9.34);
+	            EXPECT_TRUE(true);
+            }
+        
+            TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_3) 
+            {
+	            auto n = s->subtract(-9.34, 1.25);
+	            EXPECT_EQ(n, 10.59);
+	            EXPECT_TRUE(true);
+            }
+           
+            TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_4) 
+            {
+	            auto n = s->subtract(9.34, -1.25);
+	            EXPECT_EQ(n, -10.59);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_5) 
+            {
+	            auto n = s->subtract(-9.34, -1.25);
+	            EXPECT_EQ(n, 8.09);
+	            EXPECT_TRUE(true);
+            }
+        
+            /*
             TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_5) 
             {
 	            s->parse_expression("12.1 + 11.3");
@@ -312,8 +384,7 @@ namespace my
 	            EXPECT_EQ(0,0);
 	            EXPECT_TRUE(true);
             }
-            /* End of Simple Calculator Division Tests */
-            /*
+            
             TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
             {
 	            s->parse_expression("123");
