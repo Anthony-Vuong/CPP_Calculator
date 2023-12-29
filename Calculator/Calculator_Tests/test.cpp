@@ -360,10 +360,65 @@ namespace my
 	            EXPECT_TRUE(true);
             }
         
+            TEST_F(Calculator_Arithmetic_Tests, Divide_Double_Num_1) 
+            {
+	            auto n = s->divide(9.99, 3.33);
+	            EXPECT_EQ(n, 3);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Divide_Double_Num_2) 
+            {
+	            auto n = s->divide(3.33, 9.99);
+	            EXPECT_EQ(n, 3.33 / 9.99);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Divide_Double_Num_3) 
+            {
+	            auto n = s->divide(9, 1.125);
+	            EXPECT_EQ(n, 8);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Divide_Double_Num_4) 
+            {
+	            auto n = s->divide(1.125, 9);
+	            EXPECT_EQ(n, 0.125);
+	            EXPECT_TRUE(true);
+            }
+         
+            TEST_F(Calculator_Arithmetic_Tests, Multiply_Double_Num_1) 
+            {
+	            auto n = s->multiply(1.125, 8);
+	            EXPECT_EQ(n, 9);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Multiply_Double_Num_2) 
+            {
+	            auto n = s->multiply(1.125, 3.175);
+	            EXPECT_EQ(n, 3.571875);
+	            EXPECT_TRUE(true);
+            }
+         
+            TEST_F(Calculator_Arithmetic_Tests, Multiply_Double_Num_3) 
+            {
+	            auto n = s->multiply(8, 1.125);
+	            EXPECT_EQ(n, 9);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Multiply_Double_Num_4) 
+            {
+	            auto n = s->multiply(0.125, 0.25);
+	            EXPECT_EQ(n, 0.03125);
+	            EXPECT_TRUE(true);
+            }
             /*
             TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_5) 
             {
-	            s->parse_expression("12.1 + 11.3");
+	            s->parse_expression("33.3 / 9.99");
                 s->calculate();
 	            EXPECT_EQ(0,0);
 	            EXPECT_TRUE(true);
