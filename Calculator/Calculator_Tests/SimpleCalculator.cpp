@@ -13,16 +13,21 @@ auto SimpleCalculator::subtract(auto op1, auto op2) {
 	return op2 - op1;
 }
 
-int SimpleCalculator::multiply(auto op1, auto op2) {
+auto SimpleCalculator::multiply(auto op1, auto op2) {
 	return op1 * op2;
 }
 
-int SimpleCalculator::divide(auto op1, auto op2) {
-	return op1 / op2;
+auto SimpleCalculator::divide(auto op1, auto op2) {
+    //std::cout << op1 / op2 << std::endl;
+    return op1 / op2;
 }
 
 int SimpleCalculator::remainder(auto op1, auto op2) {
 	return std::fmod(op1, op2);
+}
+
+std::string SimpleCalculator::get_operand(int pos){
+    return operands.at(pos);
 }
 
 void SimpleCalculator::calculate() {

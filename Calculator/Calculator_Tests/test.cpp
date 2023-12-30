@@ -14,7 +14,7 @@
 #include "Calculator.h"
 #include "Calculator.cpp"
 
-
+#include <string>
 
 /* Test fixture for simple calculator 
  *
@@ -415,59 +415,43 @@ namespace my
 	            EXPECT_EQ(n, 0.03125);
 	            EXPECT_TRUE(true);
             }
-            /*
-            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_5) 
-            {
-	            s->parse_expression("33.3 / 9.99");
-                s->calculate();
-	            EXPECT_EQ(0,0);
-	            EXPECT_TRUE(true);
-            }
-            
-            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_6) 
-            {
-	            s->parse_expression("12 + 11");
-                s->calculate();
-	            EXPECT_EQ(0,0);
-	            EXPECT_TRUE(true);
-            }
 
-            TEST_F(Calculator_Arithmetic_Tests, Add_Double_Num_7) 
-            {
-	            s->parse_expression("12.5 + 11");
-                s->calculate();
-	            EXPECT_EQ(0,0);
-	            EXPECT_TRUE(true);
-            }
-            
             TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
             {
-	            s->parse_expression("123");
-	            EXPECT_EQ(s->get_int_num(0), 123);
+	            s->parse_expression("123 + 456");
+                std::string str{"123"};
+	            EXPECT_EQ(s->get_operand(0), str);
 	            EXPECT_TRUE(true);
             }
-            
+             
             TEST_F(Calculator_Parsing_Tests, IntegerNum2) 
             {
 	            s->parse_expression("123 + 456");
-	            EXPECT_EQ(s->get_int_num(0), 123);
+	            EXPECT_EQ(s->get_operand(1), "456");
 	            EXPECT_TRUE(true);
             }
-            
+         
             TEST_F(Calculator_Parsing_Tests, IntegerNum3) 
             {
-	            s->parse_expression("123 + 456");
-	            EXPECT_EQ(s->get_int_num(1), 456);
+	            s->parse_expression("123");
+	            EXPECT_EQ(s->get_operand(0), "123");
 	            EXPECT_TRUE(true);
             }
             
             TEST_F(Calculator_Parsing_Tests, DoubleNum1) 
             {
 	            s->parse_expression("123.456");
-	            EXPECT_EQ(s->get_double_num(0), 123.456);
+	            EXPECT_EQ(s->get_operand(0), "123.456");
 	            EXPECT_TRUE(true);
             }
-            */
+            
+            TEST_F(Calculator_Parsing_Tests, DoubleNum2) 
+            {
+	            s->parse_expression("123.456 + 987.5");
+	            EXPECT_EQ(s->get_operand(1), "987.5");
+	            EXPECT_TRUE(true);
+            }
+            
         }
     }
 }

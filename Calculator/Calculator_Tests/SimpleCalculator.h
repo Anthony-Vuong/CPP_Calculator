@@ -7,10 +7,11 @@ class SimpleCalculator : public Calculator
 public:
 	auto add(auto, auto);
 	auto subtract(auto, auto);
-	int multiply(auto, auto);
-	int divide(auto, auto);
+	auto multiply(auto, auto);
+	auto divide(auto, auto);
 	int remainder(auto, auto);
 	void calculate();
+    std::string get_operand(int pos);
 
 };
 

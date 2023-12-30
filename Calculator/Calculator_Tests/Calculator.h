@@ -13,11 +13,11 @@ protected:
 public:
 	Calculator();
 	~Calculator();
-    int add(auto, auto);
+//    int add(auto, auto);
 	int subtract(auto, auto);
 	int multiply(auto, auto);
     int divide(auto, auto);
-	int remainder(auto, auto);
+    int remainder(auto, auto);
 	virtual void calculate() = 0;
 	void parse_expression(std::string exp);
 	void run_calculator();

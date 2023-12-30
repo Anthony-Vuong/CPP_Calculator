@@ -11,29 +11,24 @@ Calculator::~Calculator() {
 	//std::cout << "Destructor" << std::endl;
 }
 
-/*
-int Calculator::get_int_num(int pos){
-    return operands.at(pos);    
-}
-
-double Calculator::get_double_num(int pos){
-    return double_operands.at(pos);
-}
-*/
 void Calculator::parse_expression(std::string exp){
 	std::string temp{};
+    std::string digits{"0123456789."};
+    std::string str_operators{"/*+-%"};
     
-	for (int i{ 0 }; i < exp.size(); i++) {
+	for (int i{ 0 }; i < exp.length(); i++) {
 		char c = exp.at(i);
-		if ((c != ' ' && c >= 48 && c <= 57) || (c != ' ' && c == '.')) {
+	//	if ((c != ' ' && c >= 48 && c <= 57) || (c != ' ' && c == '.')) {
+        
+		if (digits.find(c) != std::string::npos) {
 			temp += c;
 		}
-		if (c != ' ' && (c == 42 || c == 120 || c == 43 || c == 45 || c == 47)) { 
+		else if(str_operators.find(c) != std::string::npos) { 
             operands.push_back(temp);
             operators.push_back(c);
 			temp.clear();
 		}
-		if (i == exp.size()-1) {
+		if(i == exp.length()-1) {
             operands.push_back(temp);
 		}
 	}
