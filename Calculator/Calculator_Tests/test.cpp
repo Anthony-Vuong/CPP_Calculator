@@ -13,7 +13,6 @@
 #include "SimpleCalculator.cpp"
 #include "Calculator.h"
 #include "Calculator.cpp"
-
 #include <string>
 
 /* Test fixture for simple calculator 
@@ -416,6 +415,64 @@ namespace my
 	            EXPECT_TRUE(true);
             }
 
+            TEST_F(Calculator_Arithmetic_Tests, Square_Integer_Num_1) 
+            {
+	            auto n = s->square(5);
+	            EXPECT_EQ(n, 25);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Square_Double_Num_1) 
+            {
+	            auto n = s->square(5.5);
+	            EXPECT_EQ(n, 30.25);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Square_Double_Num_2) 
+            {
+	            auto n = s->square(0.125);
+	            EXPECT_EQ(n, 0.015625);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Square_Negative_Integer_Num_1) 
+            {
+	            auto n = s->square(-3);
+	            EXPECT_EQ(n, 9);
+	            EXPECT_TRUE(true);
+            }
+      
+            TEST_F(Calculator_Arithmetic_Tests, Square_Negative_Double_Num_1) 
+            {
+	            auto n = s->square(-3.75);
+	            EXPECT_EQ(n, 14.0625);
+	            EXPECT_TRUE(true);
+            }
+            
+            TEST_F(Calculator_Arithmetic_Tests, Square_Root_Integer_Num_1) 
+            {
+	            auto n = s->square_root(25);
+	            EXPECT_EQ(n, 5);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Square_Root_Double_Num_1) 
+            {
+	            auto n = s->square_root(4.515625);
+	            EXPECT_EQ(n, 2.125);
+	            //EXPECT_TRUE(true);
+            }
+          
+            TEST_F(Calculator_Arithmetic_Tests, Negative_Square_Root_Integer_Num_Exception_1) 
+            {
+	            EXPECT_THROW(s->square_root(-7), NegativeUnderRadicalException);
+	            //EXPECT_TRUE(true);
+            }
+
+            /* End of Calculator Arithmetic Tests */
+            
+            /* Start of Calculcator Parsing Tests */
             TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
             {
 	            s->parse_expression("123 + 456");
@@ -452,6 +509,12 @@ namespace my
 	            EXPECT_TRUE(true);
             }
             
+            TEST_F(Calculator_Parsing_Tests, DoubleNum3) 
+            {
+	            s->parse_expression("123.456 + 987.5");
+	            EXPECT_EQ(s->get_operand(0), "123.456");
+	            EXPECT_TRUE(true);
+            }
         }
     }
 }

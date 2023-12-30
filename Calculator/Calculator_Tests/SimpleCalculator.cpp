@@ -26,6 +26,26 @@ int SimpleCalculator::remainder(auto op1, auto op2) {
 	return std::fmod(op1, op2);
 }
 
+auto SimpleCalculator::square(auto op1){
+    return op1 * op1;
+}
+
+auto SimpleCalculator::square_root(auto op1){
+    if(op1 < 0){
+        throw NegativeUnderRadicalException();
+    }
+    else{
+        return std::sqrt(op1);
+    }
+    /*
+        try{
+        return std::sqrt(op1);
+    }catch(NegativeUnderRadicalException &ex){
+        std::cerr << "Negative under radical - imaginary number" << std::endl;
+    }
+    */
+}
+
 std::string SimpleCalculator::get_operand(int pos){
     return operands.at(pos);
 }
