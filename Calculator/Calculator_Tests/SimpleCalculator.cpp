@@ -18,8 +18,12 @@ auto SimpleCalculator::multiply(auto op1, auto op2) {
 }
 
 auto SimpleCalculator::divide(auto op1, auto op2) {
-    //std::cout << op1 / op2 << std::endl;
-    return op1 / op2;
+    if(op2 == 0){
+        throw DivideByZeroException();
+    }
+    else{
+        return op1 / op2;
+    }
 }
 
 int SimpleCalculator::remainder(auto op1, auto op2) {

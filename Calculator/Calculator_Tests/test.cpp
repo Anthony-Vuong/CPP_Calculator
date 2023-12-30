@@ -467,7 +467,16 @@ namespace my
             TEST_F(Calculator_Arithmetic_Tests, Negative_Square_Root_Integer_Num_Exception_1) 
             {
 	            EXPECT_THROW(s->square_root(-7), NegativeUnderRadicalException);
-	            //EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Divide_By_Zero_Exception_1) 
+            {
+	            EXPECT_THROW(s->divide(5, 0), DivideByZeroException);
+            }
+          
+            TEST_F(Calculator_Arithmetic_Tests, Divide_By_Zero_Exception_2) 
+            {
+	            EXPECT_THROW(s->divide(5, 0.0), DivideByZeroException);
             }
 
             /* End of Calculator Arithmetic Tests */

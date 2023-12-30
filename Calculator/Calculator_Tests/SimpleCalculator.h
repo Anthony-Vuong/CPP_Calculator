@@ -2,6 +2,7 @@
 #include <string>
 #include "Calculator.h"
 #include "NegativeUnderRadicalException.h"
+#include "DivideByZeroException.h"
 
 class SimpleCalculator : public Calculator
 {
