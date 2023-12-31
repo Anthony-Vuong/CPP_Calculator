@@ -414,6 +414,31 @@ namespace my
 	            EXPECT_EQ(n, 0.03125);
 	            EXPECT_TRUE(true);
             }
+ 
+            TEST_F(Calculator_Arithmetic_Tests, Modulus_Integer_Nums_1) 
+            {
+	            auto n = s->remainder(25, 6);
+	            EXPECT_EQ(n, 1);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Modulus_Double_Nums_1) 
+            {
+	            auto n = s->remainder(25, 6.4);
+                float f{5.8};
+                float g{n};
+	            EXPECT_EQ(g, f);
+	            EXPECT_TRUE(true);
+            }
+ 
+            TEST_F(Calculator_Arithmetic_Tests, Modulus_Double_Nums_2) 
+            {
+	            auto n = s->remainder(32.47, 6.42);
+                float f{0.37};
+                float g{n};
+	            EXPECT_EQ(g, f);
+	            EXPECT_TRUE(true);
+            }
 
             TEST_F(Calculator_Arithmetic_Tests, Square_Integer_Num_1) 
             {
@@ -479,6 +504,10 @@ namespace my
 	            EXPECT_THROW(s->divide(5, 0.0), DivideByZeroException);
             }
 
+            TEST_F(Calculator_Arithmetic_Tests, Divide_By_Zero_Exception_3) 
+            {
+	            EXPECT_THROW(s->remainder(5.55, 0), DivideByZeroException);
+            }
             /* End of Calculator Arithmetic Tests */
             
             /* Start of Calculcator Parsing Tests */

@@ -26,8 +26,13 @@ auto SimpleCalculator::divide(auto op1, auto op2) {
     }
 }
 
-int SimpleCalculator::remainder(auto op1, auto op2) {
-	return std::fmod(op1, op2);
+auto SimpleCalculator::remainder(auto op1, auto op2) {
+    if(op2 == 0){
+        throw DivideByZeroException();
+    }
+    else{
+	    return std::fmod(op1, op2);
+    }
 }
 
 auto SimpleCalculator::square(auto op1){

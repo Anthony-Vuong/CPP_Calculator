@@ -11,7 +11,7 @@ public:
 	auto subtract(auto, auto);
 	auto multiply(auto, auto);
 	auto divide(auto, auto);
-	int remainder(auto, auto);
+	auto remainder(auto, auto);
     auto square(auto);
 	auto square_root(auto);
     void calculate();
