@@ -56,7 +56,13 @@ auto SimpleCalculator::square_root(auto op1){
 }
 
 std::string SimpleCalculator::get_operand(int pos){
-    return operands.at(pos);
+    
+
+    while(pos != 0 ){
+        operands.pop();
+        pos--;
+    }
+    return operands.top();
 }
 
 void SimpleCalculator::calculate() {
@@ -68,8 +74,10 @@ void SimpleCalculator::calculate() {
     auto temp_oper2{0.0};
 	auto result{0.0}, mod{0.0};
 
-    t1 = operands.at(0);
-	t2 = operands.at(1);
+    t1 = operands.top();
+    operands.pop();
+	t2 = operands.top();
+    operands.pop();
 
     if(t1.find('.')){
         temp_oper1 = stod(t1);

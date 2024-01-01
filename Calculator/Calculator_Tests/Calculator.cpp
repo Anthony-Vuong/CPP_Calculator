@@ -24,12 +24,12 @@ void Calculator::parse_expression(std::string exp){
 			temp += c;
 		}
 		else if(str_operators.find(c) != std::string::npos) { 
-            operands.push_back(temp);
+            operands.push(temp);
             operators.push_back(c);
 			temp.clear();
 		}
 		if(i == exp.length()-1) {
-            operands.push_back(temp);
+            operands.push(temp);
 		}
 	}
 }

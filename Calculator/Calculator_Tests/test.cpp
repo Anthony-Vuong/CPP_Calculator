@@ -514,7 +514,7 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
             {
 	            s->parse_expression("123 + 456");
-                std::string str{"123"};
+                std::string str{"456"};
 	            EXPECT_EQ(s->get_operand(0), str);
 	            EXPECT_TRUE(true);
             }
@@ -522,7 +522,7 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, IntegerNum2) 
             {
 	            s->parse_expression("123 + 456");
-	            EXPECT_EQ(s->get_operand(1), "456");
+	            EXPECT_EQ(s->get_operand(1), "123");
 	            EXPECT_TRUE(true);
             }
          
@@ -532,7 +532,14 @@ namespace my
 	            EXPECT_EQ(s->get_operand(0), "123");
 	            EXPECT_TRUE(true);
             }
-            
+        
+            TEST_F(Calculator_Parsing_Tests, IntegerNum4) 
+            {
+	            s->parse_expression("123+456+789+987");
+	            EXPECT_EQ(s->get_operand(1), "789");
+	            EXPECT_TRUE(true);
+            }
+
             TEST_F(Calculator_Parsing_Tests, DoubleNum1) 
             {
 	            s->parse_expression("123.456");
@@ -543,16 +550,24 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, DoubleNum2) 
             {
 	            s->parse_expression("123.456 + 987.5");
-	            EXPECT_EQ(s->get_operand(1), "987.5");
+	            EXPECT_EQ(s->get_operand(1), "123.456");
 	            EXPECT_TRUE(true);
             }
             
             TEST_F(Calculator_Parsing_Tests, DoubleNum3) 
             {
 	            s->parse_expression("123.456 + 987.5");
-	            EXPECT_EQ(s->get_operand(0), "123.456");
+	            EXPECT_EQ(s->get_operand(0), "987.5");
 	            EXPECT_TRUE(true);
             }
+        
+            TEST_F(Calculator_Parsing_Tests, DoubleNum4) 
+            {
+	            s->parse_expression("12.3+4.56+98.7+2.35+90.98");
+	            EXPECT_EQ(s->get_operand(3), "4.56");
+	            EXPECT_TRUE(true);
+            }
+
         }
     }
 }

@@ -2,13 +2,14 @@
 
 #include <vector>
 #include <string>
+#include <stack>
 
 class Calculator
 {
 private:
 	
 protected:
-	std::vector<std::string> operands;
+	std::stack<std::string> operands;
 	std::vector<char> operators;
 public:
 	Calculator();
