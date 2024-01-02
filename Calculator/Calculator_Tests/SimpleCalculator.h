@@ -16,6 +16,7 @@ public:
 	auto remainder(auto, auto);
     auto square(auto);
 	auto square_root(auto);
+    auto exponent(auto, auto);
     void calculate();
     float get_result();
     std::string get_operand(int pos);

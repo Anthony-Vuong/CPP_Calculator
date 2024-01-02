@@ -56,6 +56,10 @@ std::string SimpleCalculator::get_operand(int pos){
     return operands.top();
 }
 
+auto SimpleCalculator::exponent(auto op1, auto op2){
+    return std::pow(op1, op2);
+}
+
 float SimpleCalculator::get_result(){
     return result;
 }

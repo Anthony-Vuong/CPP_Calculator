@@ -517,9 +517,33 @@ namespace my
             {
 	            auto n = s->square_root(4.515625);
 	            EXPECT_EQ(n, 2.125);
-	            //EXPECT_TRUE(true);
             }
           
+            TEST_F(Calculator_Arithmetic_Tests, Exponent_Integers_Num_1) 
+            {
+	            auto n = s->exponent(2, 2);
+	            EXPECT_EQ(n, 4);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Exponent_Integers_Num_2) 
+            {
+	            auto n = s->exponent(2, 0);
+	            EXPECT_EQ(n, 1);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Exponent_Integers_Num_3) 
+            {
+	            auto n = s->exponent(4, -1);
+                double d{0.25};
+	            EXPECT_EQ(n, d);
+            }
+
+            TEST_F(Calculator_Arithmetic_Tests, Exponent_Integers_Num_4) 
+            {
+	            auto n = s->exponent(-4, 2);
+	            EXPECT_EQ(n, 16);
+            }
+
             TEST_F(Calculator_Arithmetic_Tests, Negative_Square_Root_Integer_Num_Exception_1) 
             {
 	            EXPECT_THROW(s->square_root(-7), NegativeUnderRadicalException);
