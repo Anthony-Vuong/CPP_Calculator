@@ -3,14 +3,12 @@
 #include <cmath>
 #include "SimpleCalculator.h"
 
-
-
 auto SimpleCalculator::add(auto op1, auto op2) {
 	return op1 + op2;
 }
 
 auto SimpleCalculator::subtract(auto op1, auto op2) {
-	return op2 - op1;
+	return op1 - op2;
 }
 
 auto SimpleCalculator::multiply(auto op1, auto op2) {
@@ -46,13 +44,6 @@ auto SimpleCalculator::square_root(auto op1){
     else{
         return std::sqrt(op1);
     }
-    /*
-        try{
-        return std::sqrt(op1);
-    }catch(NegativeUnderRadicalException &ex){
-        std::cerr << "Negative under radical - imaginary number" << std::endl;
-    }
-    */
 }
 
 std::string SimpleCalculator::get_operand(int pos){
@@ -65,6 +56,10 @@ std::string SimpleCalculator::get_operand(int pos){
     return operands.top();
 }
 
+float SimpleCalculator::get_result(){
+    return result;
+}
+
 void SimpleCalculator::calculate() {
 
 	char temp_operator{};
@@ -72,7 +67,7 @@ void SimpleCalculator::calculate() {
     std::string t2{};
     auto temp_oper1{0.0};
     auto temp_oper2{0.0};
-	auto result{0.0}, mod{0.0};
+	auto mod{0.0};
 
     t1 = operands.top();
     operands.pop();
@@ -99,7 +94,6 @@ void SimpleCalculator::calculate() {
 		switch (temp_operator) {
 		case '+':
 			result = add(temp_oper1, temp_oper2);
-            std::cout << result << std::endl;
             break;
 		case '-':
 			result = subtract(temp_oper1, temp_oper2);
@@ -117,5 +111,21 @@ void SimpleCalculator::calculate() {
 		default:
 			std::cout << "Unknown" << std::endl;
 		}
+
+        if(operands.size() == 0){
+            break;
+        }
+        
+        temp_oper1 = result;
+    
+        t2 = operands.top();
+        operands.pop();
+        
+        if(t2.find('.')){
+            temp_oper2 = stod(t2);   
+        }
+        else{
+            temp_oper2 = stoi(t2);
+        }
 	}
 }

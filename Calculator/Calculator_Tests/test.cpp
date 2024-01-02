@@ -89,6 +89,37 @@ namespace my
                     SimpleCalculator *s;
             };
 
+            class Calculator_Calculate_Tests : public testing::Test
+            {
+                protected:
+
+                    // Constructor - setup happens in here
+                    Calculator_Calculate_Tests()
+                    {
+                    }
+                        
+                    // Destructor - teardown happens here
+                    ~Calculator_Calculate_Tests()
+                    {
+
+                    }
+                            
+                    // SetUp can be overriden - this method will be called after constructor, before each test
+                    void SetUp()
+                    {
+                        s = new SimpleCalculator();
+                    }
+                                
+                    // TearDown can be overriden - this method is called after destructor, after each test
+                    void TearDown()
+                    {
+                        delete s;        
+                    }  
+
+                public:
+                    SimpleCalculator *s;
+            };
+
             /* Start of Simple Calculator Addition Tests */
             TEST_F(Calculator_Arithmetic_Tests, Add_Positive_Nums_1) 
             {
@@ -152,49 +183,49 @@ namespace my
             /* Start of Simple Calculator Subtraction Tests */
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Positive_Nums_1) 
             {
-            	int n = s->subtract(1, 3);
+            	int n = s->subtract(3, 1);
 	            EXPECT_EQ(n, 2);
 	            EXPECT_TRUE(true);
             }
 
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Positive_Nums_2) 
             {
-	            int n = s->subtract(3, 1);
+	            int n = s->subtract(1, 3);
 	            EXPECT_EQ(n, -2);
 	            EXPECT_TRUE(true);
             }
 
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Positive_Nums_Inequality_Test) 
             {
-	            int n = s->subtract(1, 3);
+	            int n = s->subtract(3, 1);
 	            EXPECT_NE(n, -2);
 	            EXPECT_TRUE(true);
             }
 
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Negative_Num_1) 
             {
-	            int n = s->subtract(1, -3);
+	            int n = s->subtract(-3, 1);
 	            EXPECT_EQ(n, -4);
 	            EXPECT_TRUE(true);
             }
             
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Negative_Num_2) 
             {
-	            int n = s->subtract(-1, 3);
+	            int n = s->subtract(3, -1);
 	            EXPECT_EQ(n, 4);
 	            EXPECT_TRUE(true);
             }
             
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Negative_Nums_1) 
             {
-	            int n = s->subtract(-1, -3);
+	            int n = s->subtract(-3, -1);
 	            EXPECT_EQ(n, -2);
 	            EXPECT_TRUE(true);
             }
             
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Negative_Nums_Inequality_Test) 
             {
-	            int n = s->subtract(-1, -3);
+	            int n = s->subtract(-3, -1);
 	            EXPECT_NE(n, -5);
 	            EXPECT_TRUE(true);
             }
@@ -326,35 +357,35 @@ namespace my
          
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_1) 
             {
-	            auto n = s->subtract(0, -9.34);
+	            auto n = s->subtract(-9.34, 0);
 	            EXPECT_EQ(n, -9.34);
 	            EXPECT_TRUE(true);
             }
 
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_2) 
             {
-	            auto n = s->subtract(-9.34, 0);
+	            auto n = s->subtract(0, -9.34);
 	            EXPECT_EQ(n, 9.34);
 	            EXPECT_TRUE(true);
             }
         
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_3) 
             {
-	            auto n = s->subtract(-9.34, 1.25);
+	            auto n = s->subtract(1.25, -9.34);
 	            EXPECT_EQ(n, 10.59);
 	            EXPECT_TRUE(true);
             }
            
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_4) 
             {
-	            auto n = s->subtract(9.34, -1.25);
+	            auto n = s->subtract(-1.25, 9.34);
 	            EXPECT_EQ(n, -10.59);
 	            EXPECT_TRUE(true);
             }
 
             TEST_F(Calculator_Arithmetic_Tests, Subtract_Double_Num_5) 
             {
-	            auto n = s->subtract(-9.34, -1.25);
+	            auto n = s->subtract(-1.25, -9.34);
 	            EXPECT_EQ(n, 8.09);
 	            EXPECT_TRUE(true);
             }
@@ -514,7 +545,7 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, IntegerNum1) 
             {
 	            s->parse_expression("123 + 456");
-                std::string str{"456"};
+                std::string str{"123"};
 	            EXPECT_EQ(s->get_operand(0), str);
 	            EXPECT_TRUE(true);
             }
@@ -522,7 +553,7 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, IntegerNum2) 
             {
 	            s->parse_expression("123 + 456");
-	            EXPECT_EQ(s->get_operand(1), "123");
+	            EXPECT_EQ(s->get_operand(1), "456");
 	            EXPECT_TRUE(true);
             }
          
@@ -536,7 +567,7 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, IntegerNum4) 
             {
 	            s->parse_expression("123+456+789+987");
-	            EXPECT_EQ(s->get_operand(1), "789");
+	            EXPECT_EQ(s->get_operand(1), "456");
 	            EXPECT_TRUE(true);
             }
 
@@ -550,24 +581,125 @@ namespace my
             TEST_F(Calculator_Parsing_Tests, DoubleNum2) 
             {
 	            s->parse_expression("123.456 + 987.5");
-	            EXPECT_EQ(s->get_operand(1), "123.456");
+	            EXPECT_EQ(s->get_operand(1), "987.5");
 	            EXPECT_TRUE(true);
             }
             
             TEST_F(Calculator_Parsing_Tests, DoubleNum3) 
             {
 	            s->parse_expression("123.456 + 987.5");
-	            EXPECT_EQ(s->get_operand(0), "987.5");
+	            EXPECT_EQ(s->get_operand(0), "123.456");
 	            EXPECT_TRUE(true);
             }
         
             TEST_F(Calculator_Parsing_Tests, DoubleNum4) 
             {
 	            s->parse_expression("12.3+4.56+98.7+2.35+90.98");
-	            EXPECT_EQ(s->get_operand(3), "4.56");
+	            EXPECT_EQ(s->get_operand(3), "2.35");
+	            EXPECT_TRUE(true);
+            }
+            /* End of Calculcator Parsing Tests */
+
+
+            /* Start of Calculcator Calculate Tests */
+            TEST_F(Calculator_Calculate_Tests, Integer_Add_Num_1) 
+            {
+	            s->parse_expression("1+5");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 6);
 	            EXPECT_TRUE(true);
             }
 
+            TEST_F(Calculator_Calculate_Tests, Double_Add_Num_1) 
+            {
+	            s->parse_expression("1.1+5.5");
+                s->calculate();
+                float d{6.6};
+	            EXPECT_EQ(s->get_result(), d);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Calculate_Tests, Double_Subtract_Num_1) 
+            {
+	            s->parse_expression("1.1-5.5");
+                s->calculate();
+                float d{-4.4};
+	            EXPECT_EQ(s->get_result(), d);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Calculate_Tests, Integer_Subtract_Num_1) 
+            {
+	            s->parse_expression("1-5");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), -4);
+	            EXPECT_TRUE(true);
+            }
+         
+            TEST_F(Calculator_Calculate_Tests, Double_Multiply_Num_1) 
+            {
+	            s->parse_expression("1.1*5.5");
+                s->calculate();
+                float d{6.05};
+	            EXPECT_EQ(s->get_result(), d);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Calculate_Tests, Integer_Multiply_Num_1) 
+            {
+	            s->parse_expression("6*5");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 30);
+	            EXPECT_TRUE(true);
+            }
+   
+            TEST_F(Calculator_Calculate_Tests, Double_Divide_Num_1) 
+            {
+	            s->parse_expression("5.5/1.1");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 5);
+	            EXPECT_TRUE(true);
+            }
+
+            TEST_F(Calculator_Calculate_Tests, Integer_Divide_Num_1) 
+            {
+	            s->parse_expression("10/2");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 5);
+	            EXPECT_TRUE(true);
+            }
+        
+            TEST_F(Calculator_Calculate_Tests, Integer_Add_Multiple_Nums_1) 
+            {
+	            s->parse_expression("1+2+3");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 6);
+	            EXPECT_TRUE(true);
+            }
+        
+            TEST_F(Calculator_Calculate_Tests, Integer_Subtract_Multiple_Nums_1) 
+            {
+	            s->parse_expression("3-2-1");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 0);
+	            EXPECT_TRUE(true);
+            }
+        
+            TEST_F(Calculator_Calculate_Tests, Integer_Multiply_Multiple_Nums_1) 
+            {
+	            s->parse_expression("3*2*1");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 6);
+	            EXPECT_TRUE(true);
+            }
+        
+            TEST_F(Calculator_Calculate_Tests, Integer_Divide_Multiple_Nums_1) 
+            {
+	            s->parse_expression("40 / 2 / 5");
+                s->calculate();
+	            EXPECT_EQ(s->get_result(), 4);
+	            EXPECT_TRUE(true);
+            }
         }
     }
 }

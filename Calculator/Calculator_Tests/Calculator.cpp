@@ -11,6 +11,31 @@ Calculator::~Calculator() {
 	//std::cout << "Destructor" << std::endl;
 }
 
+
+std::stack<std::string> Calculator::reverse_stack(std::stack<std::string> s){
+    std::stack<std::string> tempstk;
+
+    for(int i{0}; i < s.size(); i++){
+        tempstk.push(operands.top());
+
+        operands.pop();
+    }
+
+    return tempstk;
+}
+
+template<typename T>
+void display_num_stack(std::stack<T> s) {
+    std::cout << "[ ";
+    while (!s.empty()) {
+        T top = s.top();
+        std::cout << top << " ";
+        s.pop();
+    }
+    std::cout << " ]\n" << std::endl;;
+
+}
+
 void Calculator::parse_expression(std::string exp){
 	std::string temp{};
     std::string digits{"0123456789."};
@@ -32,6 +57,9 @@ void Calculator::parse_expression(std::string exp){
             operands.push(temp);
 		}
 	}
+
+    operands = reverse_stack(operands);
+
 }
 
 void Calculator::run_calculator() {
