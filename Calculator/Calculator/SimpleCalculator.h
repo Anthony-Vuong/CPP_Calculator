@@ -1,17 +1,32 @@
 #pragma once
-#include <string>
+#include <QString>
+#include <QStack>
+#include <QDebug>
+#include <cmath>
 #include "Calculator.h"
+#include "NegativeUnderRadicalException.h"
+#include "DivideByZeroException.h"
+
+
+//#include <string>
+//#include <iostream>
+
 
 class SimpleCalculator : public Calculator
 {
 public:
-
-	virtual int add(int op1, int op2) override;
-	virtual int subtract(int op1, int op2) override;
-	virtual int multiply(int op1, int op2) override;
-	virtual int divide(int op1, int op2) override;
-	virtual int remainder(int op1, int op2) override;
-	virtual void calculate() override;
+    double result{0.0};
+    auto add(auto, auto);
+    auto subtract(auto, auto);
+    auto multiply(auto, auto);
+    auto divide(auto, auto);
+    auto remainder(auto, auto);
+    auto square(auto);
+    auto square_root(auto);
+    auto exponent(auto, auto);
+    QString calculate();
+    float get_result();
+    QString get_operand(int pos);
 
 };
 
