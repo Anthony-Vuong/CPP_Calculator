@@ -37,6 +37,8 @@ public:
     void QPushButton_Multiply_Handle();
     void QPushButton_Divide_Handle();
     void QPushButton_Equate_Handle();
+    void QPushButton_Decimal_Handle();
+    void QPushButton_Clear_Handle();
 
     void format_screen(QStringList t, QString result);
     void handle_digit_buttons();
@@ -57,11 +59,14 @@ private:
     QPushButton *QPushButton_8;
     QPushButton *QPushButton_9;
 
+
     QPushButton *QPushButton_Add;
     QPushButton *QPushButton_Subtract;
     QPushButton *QPushButton_Multiply;
     QPushButton *QPushButton_Divide;
     QPushButton *QPushButton_Equate;
+    QPushButton *QPushButton_Decimal;
+    QPushButton *QPushButton_Clear;
 
     QStringList strList;
 

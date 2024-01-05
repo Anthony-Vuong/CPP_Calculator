@@ -53,6 +53,7 @@ void MainWindow::init_ui(){
     QPushButton_8 = new QPushButton("8");
     QPushButton_9 = new QPushButton("9");
 
+
     // Layout Digit Buttons 2x5
     QGridLayout *digits_layout = new QGridLayout();
     // Add digit buttons to layout in grid format
@@ -82,12 +83,16 @@ void MainWindow::init_ui(){
     connect(QPushButton_9, &QPushButton::clicked, this, &MainWindow::handle_digit_buttons);
 
 
+
     // Push Buttons for Operators
     QPushButton_Add = new QPushButton("+");
     QPushButton_Subtract = new QPushButton("-");
     QPushButton_Multiply = new QPushButton("*");
     QPushButton_Divide = new QPushButton("/");
     QPushButton_Equate = new QPushButton("=");
+    QPushButton_Decimal = new QPushButton(".");
+    QPushButton_Clear = new QPushButton("C");
+    QPushButton_Clear->setStyleSheet(QString("background-color: red"));
 
     QGridLayout *operators_layout = new QGridLayout();
 
@@ -96,13 +101,16 @@ void MainWindow::init_ui(){
     operators_layout->addWidget(QPushButton_Multiply, 1, 0);
     operators_layout->addWidget(QPushButton_Divide, 1, 2);
     operators_layout->addWidget(QPushButton_Equate, 1, 1);
+    operators_layout->addWidget(QPushButton_Decimal, 2, 0);
+    operators_layout->addWidget(QPushButton_Clear, 0, 0);
 
     connect(QPushButton_Add, &QPushButton::clicked, this, &MainWindow::QPushButton_Add_Handle);
     connect(QPushButton_Subtract, &QPushButton::clicked, this, &MainWindow::QPushButton_Subtract_Handle);
     connect(QPushButton_Multiply, &QPushButton::clicked, this, &MainWindow::QPushButton_Multiply_Handle);
     connect(QPushButton_Divide, &QPushButton::clicked, this, &MainWindow::QPushButton_Divide_Handle);
     connect(QPushButton_Equate, &QPushButton::clicked, this, &MainWindow::QPushButton_Equate_Handle);
-
+    connect(QPushButton_Decimal, &QPushButton::clicked, this, &MainWindow::QPushButton_Decimal_Handle);
+    connect(QPushButton_Clear, &QPushButton::clicked, this, &MainWindow::QPushButton_Clear_Handle);
 
     // Create a new main widget to hold layouts
     QWidget *qt_widget = new QWidget();
@@ -240,6 +248,19 @@ void MainWindow::QPushButton_Divide_Handle(){
     t = screen->toPlainText();
     t = t + '/';
     screen->setPlainText(t);
+}
+
+void MainWindow::QPushButton_Decimal_Handle(){
+    QString t{};
+    t = screen->toPlainText();
+    t = t + '.';
+    screen->setPlainText(t);
+}
+
+void MainWindow::QPushButton_Clear_Handle(){
+    QString t{};
+    t = screen->toPlainText();
+    screen->textCursor().deletePreviousChar();
 }
 
 
