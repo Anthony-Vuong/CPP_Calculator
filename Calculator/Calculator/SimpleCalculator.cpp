@@ -13,12 +13,20 @@ auto SimpleCalculator::multiply(auto op1, auto op2) {
 }
 
 auto SimpleCalculator::divide(auto op1, auto op2) {
-    if(op2 == 0){
-        throw DivideByZeroException();
+
+    if(op2 == 0 && op1 != 0){
+        throw DivideByZeroException("Err");
     }
     else{
         return op1 / op2;
     }
+    /*
+    try{
+        return op1 / op2;
+    }catch(DivideByZeroException &ex){
+        qDebug() << "Error";
+    }
+    */
 }
 
 auto SimpleCalculator::remainder(auto op1, auto op2) {
@@ -44,7 +52,6 @@ auto SimpleCalculator::square_root(auto op1){
 }
 
 QString SimpleCalculator::get_operand(int pos){
-
 
     while(pos != 0 ){
         operands.pop();
@@ -79,7 +86,7 @@ QString SimpleCalculator::calculate() {
     QString t1{}, t2{};
     auto temp_oper1{0.0};
     auto temp_oper2{0.0};
-    auto mod{0.0};
+    //auto mod{0.0};
 
     t1 = operands.top();
     operands.pop();
@@ -101,7 +108,7 @@ QString SimpleCalculator::calculate() {
     }
 
     int i = 0;
-    int operator_size = operators.size();
+    size_t operator_size = operators.size();
     //for (int i{ 0 }; i < operator_size; i++) {
     while(operator_size != 0){
 
@@ -114,8 +121,14 @@ QString SimpleCalculator::calculate() {
             result = subtract(temp_oper1, temp_oper2);
             break;
         case '/':
-            result = divide(temp_oper1, temp_oper2);
-            mod = remainder(temp_oper1, temp_oper2);
+            try{
+                result = divide(temp_oper1, temp_oper2);
+            }catch(DivideByZeroException &ex){
+                operators.erase(operators.begin());
+                return QString{"Undefined"};
+            }
+
+            //mod = remainder(temp_oper1, temp_oper2);
             break;
         case '*':
             result = multiply(temp_oper1, temp_oper2);
