@@ -238,11 +238,8 @@ void MainWindow::QPushButton_SquareRoot_Handle(){
 void MainWindow::QPushButton_Squared_Handle(){
     QString t{};
     t = screen->toPlainText();
-
     t = t + MathSymbolSquared;
-
     screen->setPlainText(t);
-
 }
 
 

@@ -126,6 +126,9 @@ QString SimpleCalculator::calculate() {
         case 0x00B2:
             result = square(temp_oper1);
             break;
+        case 0x221A:
+            result = square_root(temp_oper2);
+            break;
         default:
             qDebug() << "Unknown";
         }

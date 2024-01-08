@@ -28,6 +28,7 @@ public:
     float get_result();
     QString get_operand(int pos);
     const QChar MathSymbolSquared{0x00B2};
+    const QChar MathSymbolSquareRoot{0x221A};
 
 };
 

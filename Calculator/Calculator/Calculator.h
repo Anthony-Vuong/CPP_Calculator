@@ -28,6 +28,7 @@ public:
     template<typename T>
     void display(QStack<T> s);
     const QChar MathSymbolSquared{0x00B2};
+    const QChar MathSymbolSquareRoot{0x221A};
 
 };
 

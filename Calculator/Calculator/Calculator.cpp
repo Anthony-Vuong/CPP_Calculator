@@ -50,7 +50,7 @@ void Calculator::parse_expression(QString exp){
         if (digits.contains(c)) {
             temp += c;
         }
-        else if(str_operators.contains(c) || c == MathSymbolSquared) {
+        else if(str_operators.contains(c) || c == MathSymbolSquared || c == MathSymbolSquareRoot) {
             operands.push(temp);
             operators.push_back(c);
             temp.clear();
