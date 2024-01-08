@@ -93,6 +93,8 @@ void MainWindow::init_ui(){
     QPushButton_Decimal = new QPushButton(".");
     QPushButton_Clear = new QPushButton("C");
     QPushButton_Clear->setStyleSheet(QString("background-color: red"));
+    QPushButton_Square_Root = new QPushButton(MathSymbolSquareRoot);
+    QPushButton_Squared = new QPushButton('x'+MathSymbolSquared);
 
     QGridLayout *operators_layout = new QGridLayout();
 
@@ -103,6 +105,9 @@ void MainWindow::init_ui(){
     operators_layout->addWidget(QPushButton_Equate, 1, 1);
     operators_layout->addWidget(QPushButton_Decimal, 2, 0);
     operators_layout->addWidget(QPushButton_Clear, 0, 0);
+    operators_layout->addWidget(QPushButton_Square_Root, 0, 2);
+    operators_layout->addWidget(QPushButton_Squared, 2, 2);
+
 
     connect(QPushButton_Add, &QPushButton::clicked, this, &MainWindow::QPushButton_Add_Handle);
     connect(QPushButton_Subtract, &QPushButton::clicked, this, &MainWindow::QPushButton_Subtract_Handle);
@@ -111,6 +116,8 @@ void MainWindow::init_ui(){
     connect(QPushButton_Equate, &QPushButton::clicked, this, &MainWindow::QPushButton_Equate_Handle);
     connect(QPushButton_Decimal, &QPushButton::clicked, this, &MainWindow::QPushButton_Decimal_Handle);
     connect(QPushButton_Clear, &QPushButton::clicked, this, &MainWindow::QPushButton_Clear_Handle);
+    connect(QPushButton_Square_Root, &QPushButton::clicked, this, &MainWindow::QPushButton_SquareRoot_Handle);
+    connect(QPushButton_Squared, &QPushButton::clicked, this, &MainWindow::QPushButton_Squared_Handle);
 
     // Create a new main widget to hold layouts
     QWidget *qt_widget = new QWidget();
@@ -201,7 +208,7 @@ void MainWindow::format_screen(QStringList strList, QString result){
         }
     }
 
-    t = t + "\n     =" + result + "\n";
+    t = t + "\n     = " + result + "\n";
 
     screen->setPlainText(t);
 }
@@ -218,6 +225,23 @@ void MainWindow::QPushButton_Equate_Handle(){
 
     //
     format_screen(strList, result);
+
+}
+
+void MainWindow::QPushButton_SquareRoot_Handle(){
+    QString t{};
+    t = screen->toPlainText();
+    t = t + MathSymbolSquareRoot;
+    screen->setPlainText(t);
+}
+
+void MainWindow::QPushButton_Squared_Handle(){
+    QString t{};
+    t = screen->toPlainText();
+
+    t = t + MathSymbolSquared;
+
+    screen->setPlainText(t);
 
 }
 

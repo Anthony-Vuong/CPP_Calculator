@@ -39,10 +39,11 @@ public:
     void QPushButton_Equate_Handle();
     void QPushButton_Decimal_Handle();
     void QPushButton_Clear_Handle();
+    void QPushButton_SquareRoot_Handle();
+    void QPushButton_Squared_Handle();
 
     void format_screen(QStringList t, QString result);
     void handle_digit_buttons();
-
 
 
 private:
@@ -67,6 +68,12 @@ private:
     QPushButton *QPushButton_Equate;
     QPushButton *QPushButton_Decimal;
     QPushButton *QPushButton_Clear;
+    QPushButton *QPushButton_Square_Root;
+    QPushButton *QPushButton_Squared;
+
+    const QChar MathSymbolSquareRoot{0x221A};
+    const QChar MathSymbolSquared{0x00B2};
+
 
     QStringList strList;
 

@@ -25,6 +25,9 @@ public:
     void parse_expression(QString exp);
     void run_calculator();
     QStack<QString> reverse_stack(QStack<QString> s);
+    template<typename T>
+    void display(QStack<T> s);
+    const QChar MathSymbolSquared{0x00B2};
 
 };
 

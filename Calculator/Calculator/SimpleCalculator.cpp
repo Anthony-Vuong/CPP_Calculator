@@ -100,11 +100,11 @@ QString SimpleCalculator::calculate() {
         temp_oper2 = t2.toInt();
     }
 
-
     int i = 0;
     int operator_size = operators.size();
     //for (int i{ 0 }; i < operator_size; i++) {
     while(operator_size != 0){
+
         temp_operator = operators.at(i);
         switch (temp_operator.unicode()) {
         case '+':
@@ -123,6 +123,9 @@ QString SimpleCalculator::calculate() {
         case 'x':
             result = multiply(temp_oper1, temp_oper2);
             break;
+        case 0x00B2:
+            result = square(temp_oper1);
+            break;
         default:
             qDebug() << "Unknown";
         }
@@ -130,7 +133,6 @@ QString SimpleCalculator::calculate() {
         operator_size--;
 
         if(operands.size() == 0){
-
             break;
         }
         temp_oper1 = result;

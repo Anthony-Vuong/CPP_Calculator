@@ -27,7 +27,7 @@ QStack<QString> Calculator::reverse_stack(QStack<QString> s){
 }
 
 template<typename T>
-void display(QStack<T> s) {
+void Calculator::display(QStack<T> s) {
     qDebug() << "[ ";
     while (!s.empty()) {
         T top = s.top();
@@ -50,7 +50,7 @@ void Calculator::parse_expression(QString exp){
         if (digits.contains(c)) {
             temp += c;
         }
-        else if(str_operators.contains(c)) {
+        else if(str_operators.contains(c) || c == MathSymbolSquared) {
             operands.push(temp);
             operators.push_back(c);
             temp.clear();
@@ -61,6 +61,7 @@ void Calculator::parse_expression(QString exp){
     }
 
     operands = reverse_stack(operands);
+    display(operands);
 
 }
 
