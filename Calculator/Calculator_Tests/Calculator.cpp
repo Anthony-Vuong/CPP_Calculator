@@ -39,19 +39,26 @@ void display_num_stack(std::stack<T> s) {
 void Calculator::parse_expression(std::string exp){
 	std::string temp{};
     std::string digits{"0123456789."};
-    std::string str_operators{"/*+-%"};
+    std::string str_operators{"/*+-%()"};
     
 	for (int i{ 0 }; i < exp.length(); i++) {
 		char c = exp.at(i);
-	//	if ((c != ' ' && c >= 48 && c <= 57) || (c != ' ' && c == '.')) {
         
 		if (digits.find(c) != std::string::npos) {
 			temp += c;
 		}
-		else if(str_operators.find(c) != std::string::npos) { 
-            operands.push(temp);
-            operators.push_back(c);
-			temp.clear();
+		else if(str_operators.find(c) != std::string::npos) {
+
+            if (c == ')' || c == '('){
+                operands.push(temp);
+                operands.push(std::string{c});
+                temp.clear();
+            }
+            else{
+                operands.push(temp);
+                operators.push_back(c);
+			    temp.clear();
+            }
 		}
 		if(i == exp.length()-1) {
             operands.push(temp);
@@ -59,7 +66,7 @@ void Calculator::parse_expression(std::string exp){
 	}
 
     operands = reverse_stack(operands);
-
+    display_num_stack(operands);
 }
 
 void Calculator::run_calculator() {
