@@ -636,6 +636,20 @@ namespace my
 	          //  EXPECT_EQ(s->get_operand(0), "123.456");
 	          //  EXPECT_TRUE(true);
             }
+            
+            TEST_F(Calculator_Parsing_Tests, Parentheses_Test_Basic3) 
+            {
+	            s->parse_expression("((123.456 + 987.5)+999)");
+	          //  EXPECT_EQ(s->get_operand(0), "123.456");
+	          //  EXPECT_TRUE(true);
+            }
+           
+            TEST_F(Calculator_Parsing_Tests, Parentheses_Test_Basic4) 
+            {
+	            s->parse_expression("((123.456 + 987.5) + (999*000)");
+	          //  EXPECT_EQ(s->get_operand(0), "123.456");
+	          //  EXPECT_TRUE(true);
+            }
             /* End of Calculcator Parsing Tests */
 
 
