@@ -21,6 +21,7 @@ public:
     int remainder(auto, auto);
 	virtual void calculate() = 0;
 	void parse_expression(std::string exp);
+    void prioirty_sort_operand_stack();
 	void run_calculator();
     std::stack<std::string> reverse_stack(std::stack<std::string> s);
 	

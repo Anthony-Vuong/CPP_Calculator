@@ -11,6 +11,11 @@ Calculator::~Calculator() {
 	//std::cout << "Destructor" << std::endl;
 }
 
+void Calculator::prioirty_sort_operand_stack(){
+
+
+
+}
 
 std::stack<std::string> Calculator::reverse_stack(std::stack<std::string> s){
     std::stack<std::string> tempstk;
@@ -49,16 +54,19 @@ void Calculator::parse_expression(std::string exp){
 		}
 		else if(str_operators.find(c) != std::string::npos) {
 
+            operands.push(temp);
+            operands.push(std::string{c});
+            temp.clear();
+            /*
             if (c == ')' || c == '('){
-                operands.push(temp);
                 operands.push(std::string{c});
                 temp.clear();
             }
             else{
-                operands.push(temp);
                 operators.push_back(c);
 			    temp.clear();
             }
+            */
 		}
 		if(i == exp.length()-1) {
             operands.push(temp);
